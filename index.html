@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Spotify - Gratis Diogo</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="shortcut icon" href="img/Spotify-icon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+    <h2><img src="img/logo-spotify.png" alt="Logo do Spotify" class="logo"> Spotify</h2>
+    <ul>
+        <li>
+        <a href="index.html" style="color: white; text-decoration: none;">
+            <i class="fas fa-home"></i> Início
+        </a>
+        </li>
+        <li>
+            <i class="fas fa-search"></i> Buscar
+        </a>
+        </li>
+        <li>
+            <i class="fas fa-book"></i> Sua Biblioteca
+        </a>
+        </li>
+    </ul>
+
+    <div class="github-link">
+        <a href="https://github.com/1diogorg" target="_blank" style="color: #0cb00c; text-decoration: none; font-weight: bold;">
+        <i class="fab fa-github"></i> Meu GitHub
+        </a>
+    </div>
+    </div>
+
+    <div class="main">
+        <header>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-ellipsis-v">⋮</i>
+        </div>
+        <h1 class="titulo">Bem-vindo, Diogo</h1>
+        </header>
+
+        <section class="playlist">
+        <h2>Suas Músicas</h2>
+        <div class="songs">
+            <div class="song" data-src="audio/Blinding Lights.mp3">
+                <img src="capas/Blinding.jpg" alt="Capa da Música">
+                <p>Blinding Lights - The Weeknd</p>
+            </div>
+            <div class="song" data-src="audio/Good For You.mp3">
+                <img src="capas/Good-For-Ypu.jpg" alt="Capa da Música">
+                <p>Good For You x One Of The Girls (slowed)</p>
+            </div>
+            <div class="song" data-src="audio/NIGHTS LIKE THIS.mp3">
+                <img src="capas/Nights-Like-This.jpg" alt="Capa da Música">
+                <p>NIGHTS LIKE THIS - The Kid LAROI</p>
+            </div>
+            <div class="song" data-src="audio/Timeless.mp3">
+                <img src="capas/TheWeekng.jpg" alt="Capa da Música">
+                <p>The Weeknd, Playboi Carti - Timeless</p>
+            </div>
+            <div class="song" data-src="audio/Cochise - Tell Em.mp3">
+                <img src="capas/Tell-Em.jpg" alt="Capa da Música">
+                <p>Cochise - Tell Em</p>
+            </div>
+            <div class="song" data-src="audio/Heaven Sent.mp3">
+                <img src="capas/HeavenSent.jpg" alt="Capa da Música">
+                <p>Heaven Sent</p>
+            </div>
+            <div class="song" data-src="audio/Feel It.mp3">
+                <img src="capas/FeelIt.jpg"Capa da Música">
+                <p>Feel It - d4vd</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="player">
+        <div class="song-info">
+            <img src="https://i.scdn.co/image/ab67616d00001e022bf3c5c7e6a2ce43cf54c4d3" alt="Capa da Música">
+            <div>
+                <strong>Blinding Lights</strong>
+                <p>The Weeknd</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <i class="fas fa-step-backward" id="prevBtn"></i>
+            <i class="fas fa-play-circle play-btn" id="playBtn"></i>
+            <i class="fas fa-step-forward" id="nextBtn"></i>
+            <div class="progress-container">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="progressBar" value="0" min="0" step="1">
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="volume">
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    </footer>
+
+    <script src="JS/script.js"></script>
+    <script src="JS/script2.js"></script>
+    <script src="JS/songs.js"></script>
+</body>
+</html>
