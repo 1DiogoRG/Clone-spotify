@@ -302,8 +302,19 @@ header .titulo {
         cursor: pointer;
     }
 
-    .controls i,
     .volume i {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 16px;
+        margin-left: 28%;
+    }
+
+    #volumeControl {
+        margin-right: 30%;
+    }
+
+    .controls i {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -315,7 +326,6 @@ header .titulo {
         align-items: center;
         gap: 6px;
         width: 100%;
-        justify-content: center;
         justify-content: center;
     }
 
@@ -337,7 +347,7 @@ header .titulo {
     }
 
     .volume input[type="range"] {
-        width: 80%;
+        width: 180px;
     }
 }
 

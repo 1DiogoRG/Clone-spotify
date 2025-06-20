@@ -62,31 +62,71 @@ const songs = [
 ];
 
 let currentIndex = 0;
-const audio = new Audio(songs[currentIndex].src);
-audio.volume = 0.5;
+let audio = null;
+
+function createAudio(index) {
+    audio = new Audio(songs[index].src);
+    audio.volume = volumeControl.value;
+    setupAudioEvents();
+}
 
 function loadSong(index) {
+    if (audio) {
+        audio.pause();
+    }
+
+    createAudio(index);
+
     const song = songs[index];
-    audio.src = song.src;
     playerImg.src = song.cover;
     playerTitle.textContent = song.title;
     playerArtist.textContent = song.artist;
+
     updateActiveSongCard(index);
 }
 
 function playSong() {
-    audio.play();
-    playBtn.classList.replace('fa-play-circle', 'fa-pause-circle');
-    playBtn.classList.add('playing');
+    if (audio) {
+        audio.play();
+        playBtn.classList.replace('fa-play-circle', 'fa-pause-circle');
+        playBtn.classList.add('playing');
+    }
 }
 
 function pauseSong() {
-    audio.pause();
-    playBtn.classList.replace('fa-pause-circle', 'fa-play-circle');
-    playBtn.classList.remove('playing');
+    if (audio) {
+        audio.pause();
+        playBtn.classList.replace('fa-pause-circle', 'fa-play-circle');
+        playBtn.classList.remove('playing');
+    }
+}
+
+function setupAudioEvents() {
+    audio.addEventListener('loadedmetadata', () => {
+        progressBar.max = Math.floor(audio.duration);
+        durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        progressBar.value = Math.floor(audio.currentTime);
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    progressBar.addEventListener('input', () => {
+        audio.currentTime = progressBar.value;
+    });
+
+    volumeControl.addEventListener('input', () => {
+        audio.volume = volumeControl.value;
+    });
 }
 
 playBtn.addEventListener('click', () => {
+    if (!audio) {
+        createAudio(currentIndex);
+        loadSong(currentIndex);
+    }
+
     if (audio.paused) {
         playSong();
     } else {
@@ -104,24 +144,6 @@ nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % songs.length;
     loadSong(currentIndex);
     playSong();
-});
-
-audio.addEventListener('loadedmetadata', () => {
-    progressBar.max = Math.floor(audio.duration);
-    durationEl.textContent = formatTime(audio.duration);
-});
-
-audio.addEventListener('timeupdate', () => {
-    progressBar.value = Math.floor(audio.currentTime);
-    currentTimeEl.textContent = formatTime(audio.currentTime);
-});
-
-progressBar.addEventListener('input', () => {
-    audio.currentTime = progressBar.value;
-});
-
-volumeControl.addEventListener('input', () => {
-    audio.volume = volumeControl.value;
 });
 
 function formatTime(seconds) {
