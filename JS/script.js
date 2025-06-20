@@ -11,8 +11,8 @@ const playerTitle = document.querySelector('.song-info strong');
 const playerArtist = document.querySelector('.song-info p');
 
 const songs = [
-    { title:
-        "Blinding Lights",
+    {
+        title: "Blinding Lights",
         artist: "The Weeknd",
         src: "audio/Blinding Lights.mp3",
         cover: "capas/Blinding.jpg"
@@ -61,62 +61,46 @@ const songs = [
     },
     {
         title: "Where No One Goes",
-        artist: "Where No",
+        artist: "Jónsi",
         src: "audio/Where No One Goes.mp3",
         cover: "capas/WhereNo.jpg"
     },
     {
         title: "Who Can It Be Now",
-        artist: "Who Can It",
+        artist: "Men At Work",
         src: "audio/Who Can It Be Now.mp3",
         cover: "capas/WhoCan.jpg"
     }
 ];
 
 let currentIndex = 0;
-let audio = null;
-
-function createAudio(index) {
-    if (audio) {
-        audio.pause();
-        audio = null;
-    }
-    audio = new Audio(songs[index].src);
-    audio.volume = volumeControl.value;
-    setupAudioEvents();
-}
+let audio = new Audio();
+audio.preload = "auto";
 
 function loadSong(index) {
-    createAudio(index);
     const song = songs[index];
+    audio.src = song.src;
+    audio.volume = volumeControl.value;
     playerImg.src = song.cover;
     playerTitle.textContent = song.title;
     playerArtist.textContent = song.artist;
     updateActiveSongCard(index);
+    setupAudioEvents();
 }
 
-async function playSong() {
-    if (audio && audio.readyState >= 2) {
-        try {
-        await audio.play();
+function playSong() {
+    audio.play().then(() => {
         playBtn.classList.replace('fa-play-circle', 'fa-pause-circle');
         playBtn.classList.add('playing');
-        } catch (err) {
-        console.warn("Reprodução bloqueada pelo navegador:", err);
-        }
-    } else {
-        audio.addEventListener('canplaythrough', () => {
-        playSong();
-        }, { once: true });
-    }
+    }).catch((err) => {
+        console.warn("Reprodução bloqueada:", err);
+    });
 }
 
 function pauseSong() {
-    if (audio) {
-        audio.pause();
-        playBtn.classList.replace('fa-pause-circle', 'fa-play-circle');
-        playBtn.classList.remove('playing');
-    }
+    audio.pause();
+    playBtn.classList.replace('fa-pause-circle', 'fa-play-circle');
+    playBtn.classList.remove('playing');
 }
 
 function setupAudioEvents() {
@@ -140,12 +124,7 @@ function setupAudioEvents() {
 }
 
 playBtn.addEventListener('click', () => {
-    if (!audio) {
-        loadSong(currentIndex);
-    }
-
     if (audio.paused) {
-        playBtn.classList.add('playing');
         playSong();
     } else {
         pauseSong();
@@ -155,22 +134,19 @@ playBtn.addEventListener('click', () => {
 prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + songs.length) % songs.length;
     loadSong(currentIndex);
-    playBtn.classList.add('playing');
     playSong();
 });
 
 nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % songs.length;
     loadSong(currentIndex);
-    playBtn.classList.add('playing');
     playSong();
 });
 
-document.querySelectorAll('.song').forEach((songDiv, index) => {
-    songDiv.addEventListener('click', () => {
+document.querySelectorAll('.song').forEach((el, index) => {
+    el.addEventListener('click', () => {
         currentIndex = index;
         loadSong(currentIndex);
-        playBtn.classList.add('playing');
         playSong();
     });
 });
@@ -182,7 +158,6 @@ function updateActiveSongCard(index) {
 }
 
 function formatTime(seconds) {
-    if (isNaN(seconds)) return "0:00";
     const min = Math.floor(seconds / 60);
     const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
     return `${min}:${sec}`;
