@@ -5,6 +5,10 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     background-color: #121212;
     color: white;
@@ -200,10 +204,6 @@ header .titulo {
 }
 
 @media (max-width: 768px) {
-    * {
-        -webkit-tap-highlight-color: transparent;
-    }
-
     .menu-toggle {
         display: block;
         position: absolute;
