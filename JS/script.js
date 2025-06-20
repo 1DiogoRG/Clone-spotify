@@ -167,3 +167,4 @@ function updateActiveSongCard(index) {
 }
 
 loadSong(currentIndex);
+auido.addEventListener
