@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Biblioteca - Diogo</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/biblioteca.css" />
+    <link rel="shortcut icon" href="img/Spotify-icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <h2><img src="img/logo-spotify.png" alt="Logo do Spotify" class="logo"> Spotify</h2>
+        <ul>
+        <li><a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="busca.html" style="color: white; text-decoration: none;"><i class="fas fa-search"></i> Buscar</a></li>
+        <li><a href="biblioteca.html" style="color: white; text-decoration: none;"><i class="fas fa-book"></i> Sua Biblioteca</a></li>
+        </ul>
+        <div class="github-link">
+        <a href="https://github.com/1diogorg" target="_blank" style="color: #0cb00c; text-decoration: none; font-weight: bold;">
+            <i class="fab fa-github"></i> Meu GitHub
+        </a>
+        </div>
+    </div>
+
+    <div class="main">
+        <header>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-ellipsis-v"></i>
+        </div>
+        <h1 class="titulo">Sua Biblioteca</h1>
+        </header>
+
+        <section class="library-section">
+        <div class="library-card">
+            <img src="capas/Favoritas.jpg" alt="Músicas Curtidas">
+            <h3>🎧 Músicas Curtidas</h3>
+            <p>Suas faixas favoritas reunidas em um só lugar.</p>
+        </div>
+
+        <div class="library-card">
+            <img src="capas/Workout.jpg" alt="Playlist Treino">
+            <h3>🏋️ Playlist de Treino</h3>
+            <p>Músicas para te dar energia na academia!</p>
+        </div>
+
+        <div class="library-card">
+            <img src="capas/Chill.jpg" alt="Chill Vibes">
+            <h3>🌙 Chill Vibes</h3>
+            <p>Relaxe com essas músicas suaves e tranquilas.</p>
+        </div>
+
+        <div class="library-card">
+            <img src="capas/RapHits.jpg" alt="Rap Hits">
+            <h3>🔥 Rap Hits</h3>
+            <p>Os melhores sons do rap e trap atual.</p>
+        </div>
+
+        <div class="library-card">
+            <img src="capas/PopMix.jpg" alt="Pop Mix">
+            <h3>🎤 Pop Mix</h3>
+            <p>Uma mistura dos maiores hits pop da atualidade.</p>
+        </div>
+        </section>
+    </div>
+
+    <footer class="player">
+        <div class="song-info">
+        <img src="https://i.scdn.co/image/ab67616d00001e022bf3c5c7e6a2ce43cf54c4d3" alt="Capa da Música">
+        <div>
+            <strong>Blinding Lights</strong>
+            <p>The Weeknd</p>
+        </div>
+        </div>
+
+        <div class="controls">
+        <i class="fas fa-step-backward" id="prevBtn"></i>
+        <i class="fas fa-play-circle play-btn" id="playBtn"></i>
+        <i class="fas fa-step-forward" id="nextBtn"></i>
+        <div class="progress-container">
+            <span id="currentTime">0:00</span>
+            <input type="range" id="progressBar" value="0" min="0" step="1">
+            <span id="duration">0:00</span>
+        </div>
+        </div>
+
+        <div class="volume">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    </footer>
+
+    <script src="JS/script.js"></script>
+    <script src="JS/script2.js"></script>
+</body>
+</html>

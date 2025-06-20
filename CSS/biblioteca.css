@@ -1,0 +1,36 @@
+.library-section {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.library-card {
+    flex: 1 1 220px;
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.library-card:hover {
+    background-color: #383838;
+    transform: scale(1.02);
+}
+
+.library-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.library-card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.library-card p {
+    font-size: 14px;
+    color: #b3b3b3;
+}

@@ -21,6 +21,7 @@ body {
     width: 200px;
     background-color: #000;
     padding: 20px;
+    border-right: 2.5px solid #ffffff44;
 }
 
 .sidebar h2 {
@@ -382,4 +383,8 @@ header .titulo {
 .song.active {
     border: 2px solid #1db954;
     box-shadow: 0 0 12px #1db954;
+}
+
+.song {
+    transition: all 0.3s ease;
 }

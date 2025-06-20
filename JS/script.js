@@ -11,54 +11,66 @@ const playerTitle = document.querySelector('.song-info strong');
 const playerArtist = document.querySelector('.song-info p');
 
 const songs = [
-  { title:
-    "Blinding Lights",
-    artist: "The Weeknd",
-    src: "audio/Blinding Lights.mp3",
-    cover: "capas/Blinding.jpg"
-  },
-  {
-    title: "Good For You x One Of The Girls (slowed)",
-    artist: "The Weeknd",
-    src: "audio/Good For You.mp3",
-    cover: "capas/Good-For-Ypu.jpg"
-  },
-  {
-    title: "NIGHTS LIKE THIS - The Kid LAROI",
-    artist: "The Kid LAROI",
-    src: "audio/NIGHTS LIKE THIS.mp3",
-    cover: "capas/Nights-Like-This.jpg"
-  },
-  {
-    title: "The Weeknd, Playboi Carti - Timeless",
-    artist: "The Weeknd and Playboi Carti",
-    src: "audio/Timeless.mp3",
-    cover: "capas/TheWeekng.jpg"
-  },
-  {
-    title: "Cochise - Tell Em",
-    artist: "Cochise",
-    src: "audio/Cochise - Tell Em.mp3",
-    cover: "capas/Tell-Em.jpg"
-  },
-  {
-    title: "Heaven Sent",
-    artist: "Tevomxntana",
-    src: "audio/Heaven Sent.mp3",
-    cover: "capas/HeavenSent.jpg"
-  },
-  {
-    title: "Feel It - d4vd",
-    artist: "d4vd",
-    src: "audio/Feel It.mp3",
-    cover: "capas/FeelIt.jpg"
-  },
-  {
-    title: "I Gotta Feeling",
-    artist: "Black Eyed Peas",
-    src: "audio/I Gotta Feeling.mp3",
-    cover: "capas/IGotta.jpg"
-  }
+    { title:
+        "Blinding Lights",
+        artist: "The Weeknd",
+        src: "audio/Blinding Lights.mp3",
+        cover: "capas/Blinding.jpg"
+    },
+    {
+        title: "Good For You x One Of The Girls (slowed)",
+        artist: "The Weeknd",
+        src: "audio/Good For You.mp3",
+        cover: "capas/Good-For-Ypu.jpg"
+    },
+    {
+        title: "NIGHTS LIKE THIS - The Kid LAROI",
+        artist: "The Kid LAROI",
+        src: "audio/NIGHTS LIKE THIS.mp3",
+        cover: "capas/Nights-Like-This.jpg"
+    },
+    {
+        title: "The Weeknd, Playboi Carti - Timeless",
+        artist: "The Weeknd and Playboi Carti",
+        src: "audio/Timeless.mp3",
+        cover: "capas/TheWeekng.jpg"
+    },
+    {
+        title: "Cochise - Tell Em",
+        artist: "Cochise",
+        src: "audio/Cochise - Tell Em.mp3",
+        cover: "capas/Tell-Em.jpg"
+    },
+    {
+        title: "Heaven Sent",
+        artist: "Tevomxntana",
+        src: "audio/Heaven Sent.mp3",
+        cover: "capas/HeavenSent.jpg"
+    },
+    {
+        title: "Feel It - d4vd",
+        artist: "d4vd",
+        src: "audio/Feel It.mp3",
+        cover: "capas/FeelIt.jpg"
+    },
+    {
+        title: "I Gotta Feeling",
+        artist: "Black Eyed Peas",
+        src: "audio/I Gotta Feeling.mp3",
+        cover: "capas/IGotta.jpg"
+    },
+    {
+        title: "Where No One Goes",
+        artist: "Where No",
+        src: "audio/Where No One Goes.mp3",
+        cover: "capas/WhereNo.jpg"
+    },
+    {
+        title: "Who Can It Be Now",
+        artist: "Who Can It",
+        src: "audio/Who Can It Be Now.mp3",
+        cover: "capas/WhoCan.jpg"
+    }
 ];
 
 let currentIndex = 0;
