@@ -1,7 +1,3 @@
-document.querySelector('.play-btn').addEventListener('click', function () {
-    alert("Tocando música...")
-})
-
 const playBtn = document.getElementById('playBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -56,6 +52,12 @@ const songs = [
         artist: "d4vd",
         src: "audio/Feel It.mp3",
         cover: "capas/FeelIt.jpg"
+    },
+    {
+        title: "I Gotta Feeling",
+        artist: "Black Eyed Peas",
+        src: "audio/I Gotta Feeling.mp3",
+        cover: "capas/IGotta.jpg"
     }
 ];
 
@@ -69,17 +71,21 @@ function loadSong(index) {
     playerImg.src = song.cover;
     playerTitle.textContent = song.title;
     playerArtist.textContent = song.artist;
+    updateActiveSongCard(index);
 }
 
 function playSong() {
     audio.play();
     playBtn.classList.replace('fa-play-circle', 'fa-pause-circle');
+    playBtn.classList.add('playing');
 }
 
 function pauseSong() {
     audio.pause();
     playBtn.classList.replace('fa-pause-circle', 'fa-play-circle');
+    playBtn.classList.remove('playing');
 }
+
 playBtn.addEventListener('click', () => {
     if (audio.paused) {
         playSong();
@@ -131,5 +137,11 @@ document.querySelectorAll('.song').forEach((songDiv, index) => {
         playSong();
     });
 });
+
+function updateActiveSongCard(index) {
+    document.querySelectorAll('.song').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+}
 
 loadSong(currentIndex);
