@@ -65,28 +65,26 @@ let currentIndex = 0;
 let audio = null;
 
 function createAudio(index) {
+    if (audio) {
+        audio.pause();
+        audio = null;
+    }
     audio = new Audio(songs[index].src);
     audio.volume = volumeControl.value;
     setupAudioEvents();
 }
 
 function loadSong(index) {
-    if (audio) {
-        audio.pause();
-    }
-
     createAudio(index);
-
     const song = songs[index];
     playerImg.src = song.cover;
     playerTitle.textContent = song.title;
     playerArtist.textContent = song.artist;
-
     updateActiveSongCard(index);
 }
 
 function playSong() {
-    if (audio) {
+    if (audio && audio.readyState >= 2) {
         audio.play();
         playBtn.classList.replace('fa-play-circle', 'fa-pause-circle');
         playBtn.classList.add('playing');
@@ -105,6 +103,10 @@ function setupAudioEvents() {
     audio.addEventListener('loadedmetadata', () => {
         progressBar.max = Math.floor(audio.duration);
         durationEl.textContent = formatTime(audio.duration);
+
+        if (playBtn.classList.contains('playing')) {
+            playSong();
+        }
     });
 
     audio.addEventListener('timeupdate', () => {
@@ -113,22 +115,28 @@ function setupAudioEvents() {
     });
 
     progressBar.addEventListener('input', () => {
-        audio.currentTime = progressBar.value;
+        if (audio) {
+            audio.currentTime = progressBar.value;
+        }
     });
 
     volumeControl.addEventListener('input', () => {
-        audio.volume = volumeControl.value;
+        if (audio) {
+            audio.volume = volumeControl.value;
+        }
     });
 }
 
 playBtn.addEventListener('click', () => {
     if (!audio) {
-        createAudio(currentIndex);
         loadSong(currentIndex);
     }
 
     if (audio.paused) {
-        playSong();
+        playBtn.classList.add('playing');
+        if (audio.readyState >= 2) {
+            playSong();
+        }
     } else {
         pauseSong();
     }
@@ -137,27 +145,13 @@ playBtn.addEventListener('click', () => {
 prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + songs.length) % songs.length;
     loadSong(currentIndex);
-    playSong();
+    playBtn.classList.add('playing');
 });
 
 nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % songs.length;
     loadSong(currentIndex);
-    playSong();
-});
-
-function formatTime(seconds) {
-    const min = Math.floor(seconds / 60);
-    const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
-    return `${min}:${sec}`;
-}
-
-document.querySelectorAll('.song').forEach((songDiv, index) => {
-    songDiv.addEventListener('click', () => {
-        currentIndex = index;
-        loadSong(currentIndex);
-        playSong();
-    });
+    playBtn.classList.add('playing');
 });
 
 function updateActiveSongCard(index) {
@@ -166,5 +160,12 @@ function updateActiveSongCard(index) {
     });
 }
 
+document.querySelectorAll('.song').forEach((songDiv, index) => {
+    songDiv.addEventListener('click', () => {
+        currentIndex = index;
+        loadSong(currentIndex);
+        playBtn.classList.add('playing');
+    });
+});
+
 loadSong(currentIndex);
-auido.addEventListener
