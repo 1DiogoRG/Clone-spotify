@@ -200,6 +200,10 @@ header .titulo {
 }
 
 @media (max-width: 768px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
     .menu-toggle {
         display: block;
         position: absolute;
